@@ -1,0 +1,125 @@
+\documentclass[a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+\usepackage{lmodern}
+\usepackage{fullpage}
+\usepackage{parskip}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{tabularx}
+\usepackage{graphicx}
+\usepackage{enumitem}
+%\usepackage{minted}
+\usepackage{fontspec}
+\usepackage{unicode-math}
+\usepackage{luacode}
+\usepackage{hyperref}
+\usepackage{glossaries}
+
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+
+\title{Spezielle Themen der Informatik - Lösungen}
+
+\author{Philip Bötel, Simon Struck, Lorenz Tonner}
+
+
+\tikzset{
+  treenode/.style = {align=center, inner sep=0pt, text centered,
+    font=\sffamily},
+  box/.style = {treenode, rectangle, black, font=\sffamily\bfseries, draw=black, fill=white, thick,minimum height = 8mm},
+}
+\newcommand{\block}[2]{\hspace{2mm}\color{red}(\color{black}#1\color{red})\color{black} #2\hspace{2mm}}
+
+\makeglossaries
+
+\begin{document}
+\maketitle
+    
+\begin{luacode}
+    --Aufgabe 2
+    function generateRandomAddition()
+        x = math.random(1,100)
+        y = math.random(1,100)
+        return x .. " + " .. y .. " = " .. (x+y)
+    end
+    
+    --Aufgabe 3
+    function generateAdditionTabular()
+        tex.print("\\begin{tabular} {c|c}")
+        for line = 1, 2, 1 do
+            for column = 1, 2, 1 do
+                printCell()
+                if column < 2 then
+                    tex.print('&')
+                end
+            end
+            tex.print('\\\\')
+            if line < 2 then
+                tex.print('\\hline')
+            end
+        end
+        tex.print("\\end{tabular}")
+    end
+
+    function printCell()
+        tex.print(generateRandomAddition())
+    end
+    
+    --Aufgabe 4
+    function generateDynamicAdditionTabular(size)
+        tex.print("\\begin{tabular} {c|c} ")
+        for line = 1, size, 1 do
+            for column = 1, 2, 1 do
+                printCell()
+                if column < 2 then
+                    tex.print('&')
+                end
+            end
+            tex.print('\\\\')
+            if line < size then
+                tex.print('\\hline')
+            end
+        end
+        tex.print("\\end{tabular}")
+    end
+
+    function printCell()
+        tex.print(generateRandomAddition())
+    end
+\end{luacode}
+
+
+\section{Hello World Macro}
+    Erstellen sie ein Neues Tex-Makro mit dem Namen \textbackslash helloworld, welches \textit{Hello World!} ausgibt.
+    
+    \newcommand{\helloworld}[0]{\luadirect{tex.print("Hello World!")}}
+    \helloworld
+    
+\section{Zufällige Addition}
+    Erstellen Sie eine Lua-Funktion, welche eine Zufällige Additionsaufgabe zurück gibt, die Summanden sollten im Bereich von 1 bis 100 liegen. Der Rückgabewert sollte folgendermaßen ausschauen: \\ \textit{6 + 7 = 15} \\
+    
+    \luadirect{tex.print(generateRandomAddition())}
+    
+    
+    
+\section {Additionsaufgaben als Tabelle}
+    Erstellen Sie eine Lua-Funktion, welche eine Tabelle mit Additionsaufgaben erstellt und ausgibt, die Summanden sollten im Bereich von 1 bis 100 liegen. Die Tabelle sollte Folgendermaßen ausschauen: \\\\
+    \begin{tabular} {c|c}
+        2 + 4 = 6 & 1 + 3 = 4\\
+        \hline
+        1 + 2 = 3 & 23 + 10 = 33\\
+    \end{tabular}
+    
+    \luadirect{generateAdditionTabular()}
+    
+    
+\section{Bonus: Additionsaufgaben als dynamische Tabelle}
+    Erweitern Sie die Funktion aus der vorigen Aufgabe, sodass die Anzahl der Zeilen dynamisch generiert werden können. Erstellen Sie dazu ein TeX-Makro welches die Anzahl der Zeilen übergeben wird und die Lua-Funktion ausführt.
+   
+    \newcommand{\generateDynamicAdditionTabular}[1]{\luadirect{generateDynamicAdditionTabular(#1)}}
+    
+    \generateDynamicAdditionTabular{5}
+\end{document}
