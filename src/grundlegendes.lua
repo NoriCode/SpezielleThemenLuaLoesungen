@@ -49,7 +49,7 @@ function schleifen1()
     local counter = 0
 
     while counter < 20 do
-        result = polynom1(counter)
+        result = result + polynom1(counter)
         counter = counter + 1
     end
 
@@ -74,7 +74,7 @@ function schleifen2()
     local result, polynomText = polynom2(0)
     print("Schleifen 2: Ergebnisse y= ".. polynomText .. "summiert mit anderer Schleife")
     for i = 0, 20 do
-        result = polynom2(i)
+        result = result + polynom2(i)
     end
     print("Ergebnis: " .. result)
     print("Ende Schleife 2\n\n\n")
