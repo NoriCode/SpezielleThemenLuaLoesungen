@@ -19,7 +19,7 @@ repeat
     local wahl = inputAufforderung()
 
     if wahl == 1 then
-        print("Aufgabe Grundlegendes")
+        print("\n\n\nAufgabe Grundlegendes")
         grundgeruest()
         schleifen1()
         neueFunktion()
@@ -32,6 +32,7 @@ repeat
         print("\n\n\nAufgabe User Input")
         menu()
     elseif wahl == 3 then
+        print("\n\n\n Advent of Code")
         tag1()
     end
     print("\n\n\n")
