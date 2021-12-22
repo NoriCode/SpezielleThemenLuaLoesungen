@@ -77,7 +77,7 @@ function schleifen2()
         result = polynom2(i)
     end
     print("Ergebnis: " .. result)
-    print("Ende Mod 3\n\n\n")
+    print("Ende Schleife 2\n\n\n")
 
 end
 
@@ -97,11 +97,12 @@ function nullstellen()
     end
 
     print("Es wurden " .. counter .. " Nullstellen gefunden")
-    print("Ende Mod 4\n\n\n")
+    print("Ende Nullstellen\n\n\n")
 end
 
 function rekursionVerwendung()
     local _, polynomText = polynom1(0)
     print("Rekursion: Rekursive Lösung der Funktion y= ".. polynomText .." Zahlen 20 bis 0")
     rekursion(20)
+    print("Ende Rekursion\n\n\n")	
 end
